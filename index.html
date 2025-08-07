@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Monster - A bold display page">
+    <title>Monster</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <main class="container" role="main">
+        <div class="monster-wrapper">
+            <h1 class="monster-text" aria-label="Monster">
+                <span class="letter" data-letter="M">M</span>
+                <span class="letter" data-letter="O">O</span>
+                <span class="letter" data-letter="N">N</span>
+                <span class="letter" data-letter="S">S</span>
+                <span class="letter" data-letter="T">T</span>
+                <span class="letter" data-letter="E">E</span>
+                <span class="letter" data-letter="R">R</span>
+            </h1>
+            <div class="glow-effect" aria-hidden="true"></div>
+        </div>
+        
+        <!-- Background decorative elements -->
+        <div class="bg-decoration" aria-hidden="true">
+            <div class="floating-orb orb-1"></div>
+            <div class="floating-orb orb-2"></div>
+            <div class="floating-orb orb-3"></div>
+        </div>
+    </main>
+
+    <script>
+        // Add staggered animation to letters on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const letters = document.querySelectorAll('.letter');
+            letters.forEach((letter, index) => {
+                letter.style.animationDelay = `${index * 0.1}s`;
+            });
+
+            // Add interactive hover effects
+            letters.forEach(letter => {
+                letter.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-10px) scale(1.1)';
+                });
+                
+                letter.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Add keyboard accessibility
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                const letters = document.querySelectorAll('.letter');
+                letters.forEach(letter => {
+                    letter.style.animation = 'none';
+                    setTimeout(() => {
+                        letter.style.animation = 'letterReveal 0.8s ease-out forwards';
+                    }, 10);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
